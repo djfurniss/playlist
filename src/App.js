@@ -1,7 +1,16 @@
 import "./App.css";
+import Header from "./Header";
+import MahjongContainer from "./MahjongContainer";
 
 function App() {
-  return <h1>World of Mahjong</h1>;
+  return (
+  <>
+      <Header/>
+    <div className="container-fluid px-4">
+      <MahjongContainer/>
+    </div>
+  </>
+  );
 }
 
 export default App;
