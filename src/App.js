@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./styles/App.css";
 import Header from "./Header";
+import PostSong from "./PostSong";
 import SongsList from "./SongsList.js";
 
 //---data---
@@ -59,7 +60,14 @@ export default function App() {
   return (
   <div>
       <Header/>
+      <PostSong/>
       <SongsList songs={songs} deleteHandler={deleteHandler} likeHandler={likeHandler}/>
+      <button 
+        onClick={async()=>{
+          const response = await fetch('http://localhost:8080/pastes')
+          const {data} = await response.json();
+          console.log(data)
+          }}>Test Click</button>
   </div>
   );
 }
