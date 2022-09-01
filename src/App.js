@@ -3,71 +3,33 @@ import "./styles/App.css";
 import Header from "./Header";
 import PostSong from "./PostSong";
 import SongsList from "./SongsList.js";
-
-//---data---
-  const songsArr = [
-    {
-      title: "Merlot",
-      artist: "Smino",
-      year: "2021",
-      liked: false
-    },
-    {
-      title: "Say So",
-      artist: "Doja Cat",
-      year: "2019",
-      liked: false
-    },
-    {
-      title: "Good Days",
-      artist: "SZA",
-      year: "2020",
-      liked: false
-    },
-  ];
-
+const songsArr = require("./data/songs")
 
 export default function App() {
-  // songs = [{title: "", artist: "", year: ""}]
-  //button I want: sort by (year and title), filter by (artist and year), to get a random song, add a song, delete a song
 //---state---
   const [songs, setSongs] = useState(songsArr)
 
-//---state changes---
-  function addSong(newSongObj){
-    setSongs(...songs, newSongObj)
-  }
+//---state changers---
+  const addSong = (newSongObj) => setSongs([...songs, newSongObj])
 
-  function deleteHandler(indexToDelete){
-    setSongs(songs.filter((_, index)=>{
-      return index !== indexToDelete
-    }))
-  }
+  const deleteHandler = (indexToDel) => setSongs(songs.filter((_, index)=> index !== indexToDel));
 
   function likeHandler(indexToLike){
-    // console.log(indexToLike)
     const likeFiltered = songs.map((song, idx)=>{
       if (idx === indexToLike){
         song.liked = !song.liked
         return song
       }else{ return song}
     })
-    console.log(likeFiltered)
     setSongs(likeFiltered)
-  }
+  };
 
 //---return---
   return (
   <div>
       <Header/>
-      <PostSong/>
+      <PostSong addSong={addSong}/>
       <SongsList songs={songs} deleteHandler={deleteHandler} likeHandler={likeHandler}/>
-      <button 
-        onClick={async()=>{
-          const response = await fetch('http://localhost:8080/pastes')
-          const {data} = await response.json();
-          console.log(data)
-          }}>Test Click</button>
   </div>
   );
-}
+};

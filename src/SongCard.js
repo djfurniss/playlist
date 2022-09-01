@@ -1,8 +1,5 @@
-import { useState } from "react"
+import React from "react"
 export default function SongCard({song, deleteHandler, likeHandler}){
-
-//---state---
-    // console.log(song)
 
 //---return---
     return (
@@ -28,16 +25,4 @@ export default function SongCard({song, deleteHandler, likeHandler}){
             </div>
         </div>
     )
-    /*
-<div class="card" style="width: 18rem;">
-  <div class="card-header">
-    Featured
-  </div>
-  <ul class="list-group list-group-horizontal list-group-flush">
-    <li class="list-group-item">An item</li>
-    <li class="list-group-item">A second item</li>
-    <li class="list-group-item">A third item</li>
-  </ul>
-</div>
-    */
-}
+};
