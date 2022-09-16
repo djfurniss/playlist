@@ -1,14 +1,23 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./styles/App.css";
 import Header from "./Header";
 import PostSong from "./PostSong";
 import SongsList from "./SongsList.js";
-const songsArr = require("./data/songs")
 
 export default function App() {
 //---state---
-  const [songs, setSongs] = useState(songsArr)
+  const [songs, setSongs] = useState([])
 
+//--- useEffect ---
+  useEffect( ()=> {
+    async function loadSongs () {
+      const response = await (await fetch('http://localhost:5001')).json()
+      setSongs(response.data)
+    }
+
+    loadSongs()
+  }, [])
+  
 //---state changers---
   const addSong = (newSongObj) => setSongs([...songs, newSongObj])
 
@@ -29,7 +38,7 @@ export default function App() {
   <div>
       <Header/>
       <PostSong addSong={addSong}/>
-      <SongsList songs={songs} deleteHandler={deleteHandler} likeHandler={likeHandler}/>
+      {songs.length && <SongsList songs={songs} deleteHandler={deleteHandler} likeHandler={likeHandler}/>}
   </div>
   );
 };

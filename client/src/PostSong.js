@@ -4,7 +4,7 @@ export default function PostSong({addSong}){
 const INIT_FORM = {
     title: "",
     artist: "",
-    year: null,
+    year: "",
     liked: false
   }
     const [formData, setFormData] = useState(INIT_FORM)

@@ -5,8 +5,9 @@ const app = express();
 app.use(express.json())
 app.use(cors())
 
+const songs = require("./data/songs")
 app.use((req, res, next) => {
-    res.json({message: "hello there"})
+    res.json({data: songs})
 })
 
 

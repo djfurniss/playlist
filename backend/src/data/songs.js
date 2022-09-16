@@ -17,4 +17,10 @@ module.exports = [
       year: "2020",
       liked: false
     },
+    {
+      title: "Golden Hour",
+      artist: "JVKE",
+      year: "2022",
+      liked: false
+    },
   ];
