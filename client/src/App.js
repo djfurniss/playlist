@@ -11,7 +11,7 @@ export default function App() {
 //--- useEffect ---
   useEffect( ()=> {
     async function loadSongs () {
-      const response = await (await fetch('http://localhost:5001')).json()
+      const response = await (await fetch('https://playlist-2579-backend.herokuapp.com/')).json()
       setSongs(response.data)
     }
 
