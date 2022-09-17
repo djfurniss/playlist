@@ -6,9 +6,9 @@ async function list (req, res, next){
 };
 
 async function create(req, res, next){
-    await service.create(req.body.data)
-    res.json({ data: req.body.data })
-}
+    const data = await service.create(req.body.data)
+    res.json({ data })
+};
 
 module.exports = {
     list,

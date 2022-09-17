@@ -2,7 +2,7 @@ import React, { useState } from "react";
 export default function PostSong({addSong}){
 
 const INIT_FORM = {
-    title: "",
+    name: "",
     artist: "",
     year: "",
     liked: false
@@ -13,9 +13,10 @@ const INIT_FORM = {
         setFormData({...formData, [target.name]: target.value})
     };
     
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        addSong(formData);
+        // console.log(formData)
+        await addSong(formData);
         setFormData(INIT_FORM);
     }
 
@@ -24,11 +25,11 @@ const INIT_FORM = {
         <div>
             <h2 className="text-center">Add a Song</h2>
             <form onSubmit={handleSubmit} className="container">
-                <label>Title</label>
+                <label>Name</label>
                 <input 
                     type="text"
-                    name="title"
-                    value={formData.title}
+                    name="name"
+                    value={formData.name}
                     onChange={handleInputChange}
                     className="form-control"/>
                 <label>Artist</label>
