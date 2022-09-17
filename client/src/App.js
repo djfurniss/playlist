@@ -7,6 +7,7 @@ import SongsList from "./SongsList.js";
 export default function App() {
 
 const { NODE_ENV } = process.env
+console.log(NODE_ENV)
 const URL = NODE_ENV === "production" 
 ? "https://playlist-2579-backend.herokuapp.com/" 
 : "http://localhost:5001"
