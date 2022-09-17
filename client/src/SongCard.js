@@ -6,7 +6,7 @@ export default function SongCard({song, deleteHandler, likeHandler}){
         <div className="col mb-2">
             <div className={song.liked ? "card border border-end border-success border-4" : "card"}>
                 <ul className="list-group list-group-flush">
-                    <li className="list-group-item">Song: {song.title}</li>
+                    <li className="list-group-item">Song: {song.name}</li>
                     <li className="list-group-item">Artist: {song.artist}</li>
                     <li className="list-group-item">Year: {song.year}</li>
                 <div className="d-flex justify-content-around p-2">

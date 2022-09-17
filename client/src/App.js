@@ -10,8 +10,13 @@ export default function App() {
 
 //--- useEffect ---
   useEffect( ()=> {
+      const { NODE_ENV } = process.env
+      const URL = NODE_ENV === "production" 
+      ? "https://playlist-2579-backend.herokuapp.com/" 
+      : "http://localhost:5001"
+
     async function loadSongs () {
-      const response = await (await fetch('https://playlist-2579-backend.herokuapp.com/')).json()
+      const response = await (await fetch(URL)).json()
       setSongs(response.data)
     }
 
@@ -38,7 +43,9 @@ export default function App() {
   <div>
       <Header/>
       <PostSong addSong={addSong}/>
-      {songs.length && <SongsList songs={songs} deleteHandler={deleteHandler} likeHandler={likeHandler}/>}
+      {songs.length ?
+       <SongsList songs={songs} deleteHandler={deleteHandler} likeHandler={likeHandler}/>
+      : <h1>Loading</h1>}
   </div>
   );
 };

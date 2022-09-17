@@ -1,17 +1,11 @@
 const express = require("express");
 const cors = require("cors")
 const app = express();
+const router = require("./router")
 
 app.use(express.json())
 app.use(cors())
 
-const songs = require("./data/songs")
-app.use((req, res, next) => {
-    res.json({data: songs})
-})
-
-
-
-
+app.use("/", router)
 
 module.exports = app;
