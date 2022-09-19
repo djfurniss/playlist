@@ -1,6 +1,6 @@
 import React from "react";
 import SongCard from "./SongCard"
-export default function SongsList({songs, deleteHandler, likeHandler}){
+export default function SongsList({songs, deleteHandler, handleLike}){
 
 //---return---
     return (
@@ -10,8 +10,8 @@ export default function SongsList({songs, deleteHandler, likeHandler}){
                 {songs.map((song, index)=> <SongCard 
                 key={index}
                 song={song}
-                deleteHandler = {()=>deleteHandler(index)}
-                likeHandler={()=>likeHandler(index)}
+                deleteHandler = {()=>{}}
+                likeHandler={()=>handleLike(index)}
                 />)}
             </div>}
         </div>
