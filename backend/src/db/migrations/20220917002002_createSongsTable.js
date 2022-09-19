@@ -11,6 +11,7 @@ exports.up = function(knex) {
     table.string("name")
     table.string("artist")
     table.string("year")
+    table.string("posted_by")
     table.boolean("liked").defaultTo(false)
     table.timestamps(true, true)
   })

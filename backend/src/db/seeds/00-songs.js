@@ -7,6 +7,6 @@ const songs = require("../fixtures/songs")
 
 exports.seed = async function(knex) {
   // Deletes ALL existing entries
-  await knex('songs').del()
+  await knex.raw("TRUNCATE TABLE songs RESTART IDENTITY CASCADE")
   await knex('songs').insert(songs);
 };

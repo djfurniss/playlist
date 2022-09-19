@@ -1,18 +1,43 @@
 const knex = require("./db/connection");
 
-function list () {
-    return knex("songs")
-        .select("*")
+function listSongs (playlist_id) {
+    return knex("songs as s")
+        .join("playlists_songs as ps", "ps.song_id", "s.song_id")
+        .join("playlists as p", "ps.playlist_id", "p.playlist_id")
+        .select("s.*", "p.*")
+        .where({"p.playlist_id": playlist_id})
 };
 
-function create (newSong) {
+function loadPlaylist (playlist_id) {
+    return knex("playlists")
+        .select("*")
+        .where({playlist_id})
+        .first();
+}
+
+function addSong (newSong) {
     return knex("songs")
         .insert(newSong)
         .returning("*")
         .then(newRecord => newRecord[0])
 };
 
+function createPlaylist(playlist){
+    return knex("playlists")
+        .insert(playlist)
+};
+
+function playlistExists(playlist_id){
+    return knex("playlists")
+        .select("*")
+        .where({playlist_id})
+        .first()
+}
+
 module.exports = {
-    list,
-    create
+    listSongs,
+    addSong,
+    loadPlaylist,
+    createPlaylist,
+    playlistExists
 };
