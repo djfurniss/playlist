@@ -8,8 +8,7 @@ function PlaylistPage ({setSongs, songs, likeHandler}) {
     const [playlist, setPlaylist] = useState("")
     const {playlistId} = useParams();
 
-    // const URL = "https://playlist-2579-backend.herokuapp.com/"
-    const BASE_URL = `http://localhost:5001`
+    const BASE_URL = process.env.BASE_API_URL || "http://localhost:5001"
 
 
     useEffect( ()=> {
