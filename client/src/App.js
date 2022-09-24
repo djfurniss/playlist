@@ -18,7 +18,7 @@ export default function App() {
   <div>
     <Routes>
       <Route 
-        path="/playlist" 
+        path="/" 
         element={<Home/>}
         />
       <Route 
