@@ -48,7 +48,7 @@ function NewPlaylist() {
                         type="submit"
                         className="btn btn-primary mx-2 my-2">Submit</button>
                     <button
-                        onClick={()=>{navigate("/playlist")}}
+                        onClick={()=>{navigate("/")}}
                         className="btn btn-secondary mx-2 my-2">Cancel</button>
                 </div>
             </form>

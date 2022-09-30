@@ -15,7 +15,6 @@ const INIT_FORM = {
     
     const handleSubmit = async (event) => {
         event.preventDefault();
-        // console.log(formData)
         await addSong(formData);
         setFormData(INIT_FORM);
     }

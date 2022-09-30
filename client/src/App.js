@@ -4,6 +4,7 @@ import "./styles/App.css";
 import Header from "./Header";
 import PostSong from "./PostSong";
 import SongsList from "./SongsList.js";
+import PageNotFound from "./PageNotFound"
 import Home from "./Home/Home";
 import NewPlaylist from "./NewPlaylist/NewPlaylist";
 import JoinPlaylist from "./JoinPlaylist/JoinPlaylist";
@@ -36,7 +37,12 @@ export default function App() {
           songs={songs} 
           setSongs={setSongs}/>}
         />
+        <Route 
+        path="*"
+        element={<PageNotFound/>}
+        />
     </Routes>
+        
   </div>
   );
 };

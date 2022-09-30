@@ -38,6 +38,6 @@ async function createPlaylist(req, res, next) {
 module.exports = {
     listSongs: [playlistExists, listSongs],
     addSong: [playlistExists, addSong],
-    loadPlaylist,
+    loadPlaylist: [playlistExists, loadPlaylist],
     createPlaylist
 }
