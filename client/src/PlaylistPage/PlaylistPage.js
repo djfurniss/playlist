@@ -29,7 +29,7 @@ function PlaylistPage ({setSongs, songs, likeHandler}) {
 
         // loadSongs();
         // loadPlaylist();
-}, [songs]);
+}, []);
 
 // console.log(err)
 
