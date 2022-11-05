@@ -27,6 +27,11 @@ async function addSong(req, res, next){
     res.json({ data })
 };
 
+async function likeSong(req, res, next){
+    const { song_id } = req.body.data
+    const data = await service.likeSong(song_id)
+    res.json({ data })
+}
 
 async function createPlaylist(req, res, next) {
     const {playlist_name, playlist_id} = req.body.data
@@ -38,6 +43,7 @@ async function createPlaylist(req, res, next) {
 module.exports = {
     listSongs: [playlistExists, listSongs],
     addSong: [playlistExists, addSong],
+    likeSong: [playlistExists, likeSong],
     loadPlaylist: [playlistExists, loadPlaylist],
     createPlaylist
 }

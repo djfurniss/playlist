@@ -10,6 +10,7 @@ router
 router
     .route("/playlists/songs/:playlistId")
     .get(controller.listSongs)
+    .put(controller.likeSong)
     .post(controller.addSong)
     .all(methodNotAllowed)
 
