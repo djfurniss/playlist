@@ -14,6 +14,8 @@ exports.up = function(knex) {
             .references("song_id")
             .inTable("songs")
             .onDelete("cascade")
+        table.boolean("is_liked").defaultTo(false)
+        table.string("added_by")
         table.timestamps(true,true)
       })
 };

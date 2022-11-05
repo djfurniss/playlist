@@ -2,20 +2,17 @@ module.exports = [
     {
       name: "Merlot",
       artist: "Smino",
-      year: "2021",
-      posted_by: "Maddie"
+      year: "2021"
     },
     {
       name: "Say So",
       artist: "Doja Cat",
-      year: "2019",
-      posted_by: "Gary"
+      year: "2019"
     },
     {
       name: "Good Days",
       artist: "SZA",
-      year: "2020",
-      posted_by: "Bob"
+      year: "2020"
     },
     {
       name: "Golden Hour",
