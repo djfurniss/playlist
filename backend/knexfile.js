@@ -1,13 +1,15 @@
-// Update with your config settings.
-
 /**
  * @type { Object.<string, import("knex").Knex.Config> }
  */
-require("dotenv").config()
-const { DATABASE_URL } = process.env
+
+require("dotenv").config();
+
+const { 
+  DATABASE_URL, 
+  PRODUCTION_DATABASE_URL,
+} = process.env
 
 module.exports = {
-
   development: {
     client: 'pg',
     connection: DATABASE_URL,
@@ -21,10 +23,9 @@ module.exports = {
 
   production: {
     client: 'postgresql',
-    connection: DATABASE_URL,
+    connection: PRODUCTION_DATABASE_URL,
     migrations: {
       directory: "src/db/migrations"
     }
-  }
-
+  },
 };
