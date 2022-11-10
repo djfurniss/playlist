@@ -3,10 +3,10 @@
  * @returns { Promise<void> } 
  */
 
-const songs = require("../fixtures/songs")
+const users = require("../fixtures/users");
 
 exports.seed = async function(knex) {
   // Deletes ALL existing entries
-  await knex.raw("TRUNCATE TABLE songs RESTART IDENTITY CASCADE")
-  await knex('songs').insert(songs);
+  await knex.raw("TRUNCATE TABLE users RESTART IDENTITY CASCADE")
+  await knex('users').insert(users);
 };
