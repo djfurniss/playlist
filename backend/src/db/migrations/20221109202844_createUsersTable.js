@@ -2,15 +2,11 @@
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
  */
-
-require("dotenv").config()
-
 exports.up = function(knex) {
-  return knex.schema.createTable("songs", (table) => {
-    table.increments("song_id").primary()
-    table.string("name")
-    table.string("artist")
-    table.string("year")
+  return knex.schema.createTable("users", (table) => {
+    table.increments("user_id").primary()
+    table.string("user_name").unique().notNullable()
+    table.string("user_password").notNullable()
     table.timestamps(true, true)
   })
 };
@@ -20,5 +16,5 @@ exports.up = function(knex) {
  * @returns { Promise<void> }
  */
 exports.down = function(knex) {
-  return knex.schema.dropTable("songs")
+  return knex.schema.dropTable("users")
 };

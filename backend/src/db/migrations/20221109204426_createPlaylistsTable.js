@@ -4,8 +4,13 @@
  */
 exports.up = function(knex) {
   return knex.schema.createTable("playlists", (table) => {
-    table.string("playlist_id").notNullable().unique()
+    table.increments("playlist_id")
     table.string("playlist_name")
+    table.integer("owner")
+    table.foreign("owner")
+        .references("user_id")
+        .inTable("users")
+    table.unique(["playlist_id", "owner"])    
     table.timestamps(true, true)
   })
 };
