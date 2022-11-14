@@ -14,7 +14,7 @@ app.use(express.json())
 app.use(cors())
 
 app.use("/playlists", playlistsRouter)
-// app.use("/users", usersRouter)
+app.use("/users", usersRouter)
 
 app.use(errorHandle)
 app.use(pageNotFound)
