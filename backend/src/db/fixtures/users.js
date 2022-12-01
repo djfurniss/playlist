@@ -2,11 +2,19 @@ module.exports = [
     {
         "user_id": 1,
         "user_name": "djf",
-        "user_password": "jaliece2010"
+        "password": "jaliece2010",
+        "email": "dfurniss@ymail.com",
     },
     {
         "user_id": 2,
         "user_name": "dfurniss",
-        "user_password": "jaliece2010"
+        "password": "jaliece2010",
+        "email": "denasiafurniss@gmail.com",
+    },
+    {
+        "user_id": 3,
+        "user_name": "bobby412",
+        "password": "password",
+        "email": "jalieve2010@gmail.com",
     },
 ]
