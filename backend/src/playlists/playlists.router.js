@@ -16,4 +16,4 @@ router
     .post(controller.createPlaylist)
     .all(methodNotAllowed)
 
-module.exports = router
+module.exports = router;

@@ -1,11 +1,11 @@
 const knex = require("../db/connection");
 
-function listSongs (playlist_id) {
-    return knex("songs as s")
-        .join("playlists_songs as ps", "ps.song_id", "s.song_id")
-        .join("playlists as p", "ps.playlist_id", "p.playlist_id")
+function list(user_id){
+    return knex("users_playlists")
         .select("*")
-        .where({"p.playlist_id": playlist_id})
+        .where({ user_id })
+        .join("playlists", "users_playlists.playlist_id", "=", "playlists.playlist_id")
+        .returning("*")
 };
 
 function loadPlaylist (playlist_id) {
@@ -13,21 +13,7 @@ function loadPlaylist (playlist_id) {
         .select("*")
         .where({playlist_id})
         .first()
-}
-
-function addSong (newSong) {
-    return knex("songs")
-        .insert(newSong)
-        .returning("*")
-        .then(newRecord => newRecord[0])
 };
-
-function likeSong(song_id){
-    return knex("playlists_songs")
-        .update({ liked: !liked })
-        .where({ song_id })
-        .returning("*")
-}
 
 function createPlaylist(playlist){
     return knex("playlists")
@@ -40,12 +26,10 @@ function playlistExists(playlist_id){
         .select("*")
         .where({playlist_id})
         .first()
-}
+};
 
 module.exports = {
-    listSongs,
-    addSong,
-    likeSong,
+    list,
     loadPlaylist,
     createPlaylist,
     playlistExists

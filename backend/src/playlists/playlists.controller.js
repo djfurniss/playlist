@@ -13,7 +13,10 @@ const playlistExists = async (req, res, next) => {
 
 // --- router level middleware ---
 async function list(req, res, next){
-
+    const { user_id } = req.params
+    console.log(user_id)
+    const data = await service.list(user_id)
+    res.json({ data });
 };
 
 async function loadPlaylist (req, res, next){
@@ -23,10 +26,10 @@ async function loadPlaylist (req, res, next){
 };
 
 async function createPlaylist(req, res, next) {
-    const {playlist_name, playlist_id} = req.body.data
-    await service.createPlaylist(req.body.data)
-    console.log(`playlist created. id: ${playlist_id}, name: ${playlist_name}}`)
-    res.status(203).json({message: `playlist created. id: ${playlist_id}, name: ${playlist_name}`})
+    const { playlist_name } = req.body.data
+    await service.createPlaylist(playlist_name)
+    console.log(`playlist created. name: ${playlist_name}}`)
+    res.status(203).json({message: `playlist created. name: ${playlist_name}`})
 };
 
 module.exports = {
