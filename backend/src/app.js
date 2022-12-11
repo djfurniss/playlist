@@ -16,6 +16,11 @@ app.use(cors())
 app.use("/playlists", playlistsRouter)
 app.use("/users", usersRouter)
 
+app.use("/test", (req, res, next)=>{
+    console.log("test call")
+    res.json({data: "WAOW!!"})
+})
+
 app.use(errorHandle)
 app.use(pageNotFound)
 
