@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
+import { test } from "../utils/api"
 
 function Home () {
 
@@ -10,6 +11,10 @@ const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
 const RESPONSE_TYPE = "token"
 
     const navigate = useNavigate();
+
+    useEffect(()=>{
+        test().then(res=>console.log(res))
+    }, [])
     // const [token, setToken] = useState("")
     // const [searchKey, setSearchKey] = useState("")
     // const [songs, setSongs] = useState([])

@@ -1,9 +1,9 @@
 const knex = require("../db/connection");
 
-function logIn(user_name, password){
+function logIn(user_name, hash){
     return knex("users")
     // .select("*")
-    .where({user_name, password})
+    .where({user_name, password: hash})
     .returning("*")
     .then(user => user[0])
 };

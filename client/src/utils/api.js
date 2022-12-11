@@ -1,14 +1,25 @@
-const BASE_API_URL = process.env.BASE_API_URL || "http://localhost:5001"
+// const BASE_API_URL = process.env.BASE_API_URL || "http://localhost:5001"
+// const BASE_API_URL = "http://localhost:5001"
+const BASE_API_URL = "https://every-rings-cough-99-131-23-93.loca.lt"
+const headers = new Headers();
+headers.append("Content-Type", "application/json");
+headers.append("Bypass-Tunnel-Reminder", "true");
 
-
-// async function playlistExists (playlistId) {
-//     ///playlists/:playlistId
-    
-//     return res.json()
-// };
-
-export async function addPlaylist() {
-    
+export async function test() {
+    const url = `${BASE_API_URL}/test`
+    return fetch(url, headers)
+        .then(res => res.json())
+        .then(res => {
+            if(res.error){
+                throw res.error
+            }else{
+                console.log(res)
+                return res
+            }
+        })
+        .catch(err => {
+            throw err
+        })
 };
 
 export async function loadPlaylist(playlistId){

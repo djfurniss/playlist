@@ -1,5 +1,9 @@
+const { createHmac } = require('node:crypto');
 const service = require("./users.service");
 const { list: listPlaylists } = require("../playlists/playlists.controller")
+
+// --- HASHING ---
+const secret = 'abcdefg';
 
 
 // --- VALIDATION MIDDLEWARE ---
@@ -60,25 +64,34 @@ const validPass = async(req, res, next) => {
 
 // --- ROUTER LEVEL MIDDLEWARE ---
 async function logIn(req, res, next){
-    console.log(req.query)
-    const { username, password } = req.query
-    console.log(`username: ${username} | password: ${password}`);
-    if(!username || !password){
+    console.log(req.body)
+    const { data: { user_name, password } } = req.body
+
+    // console.log(`username: ${user_name} | password: ${password}`);
+    // console.log(hash)
+    if(!user_name || !password){
         next({status: 404, message: "need a username and password"})
     }else {
-        const loggedIn = await service.logIn(username, password);
+        const hash = createHmac('sha256', secret)
+                .update(password.trim())
+                .digest('hex');
+        const loggedIn = await service.logIn(user_name, hash);
         if(!loggedIn){
             next({status: 400, message: "username or password incorrect"})
         }else{
             res.json({data: loggedIn})
-            // TODO: send a token???
         }
     }
 };
 
 async function register(req, res, next){
     const { data: { user_name, email, password } } = req.body
-    await service.register(user_name.trim(), email.trim().toLowerCase(), password.trim())
+    const hash = createHmac('sha256', secret)
+        .update(password.trim())
+        .digest('hex');
+    console.log(hash);
+
+    // await service.register(user_name.trim(), email.trim().toLowerCase(), password.trim())
     const newUser = await service.logIn(user_name.trim(), password.trim())
     console.log(newUser)
     res.json({ data: newUser})

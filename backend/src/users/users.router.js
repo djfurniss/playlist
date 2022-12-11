@@ -5,7 +5,7 @@ const methodNotAllowed = require("../errors/methodNotAllowed");
 // mounted to "/users"
 router
     .route("/login")
-    .get(controller.logIn)
+    .put(controller.logIn)
 
 router
     .route("/:user_id/playlists")
