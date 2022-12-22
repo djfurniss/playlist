@@ -5,6 +5,7 @@
 exports.up = function(knex) {
   return knex.schema.createTable("playlists", (table) => {
     table.increments("playlist_id")
+      // TODO :from increments to varchar.. going to be a random generated string
     table.string("playlist_name")
     table.integer("owner")
     table.foreign("owner")
