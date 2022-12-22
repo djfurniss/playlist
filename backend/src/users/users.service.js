@@ -2,8 +2,9 @@ const knex = require("../db/connection");
 
 function logIn(user_name, hash){
     return knex("users")
-    // .select("*")
     .where({user_name, password: hash})
+    // .join("users_playlists", "users.user_id", "users_playlists.user_id")
+    // .join("playlists p", "up.playlist_id", "p.playlist_id")
     .returning("*")
     .then(user => user[0])
 };

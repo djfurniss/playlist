@@ -18,7 +18,7 @@ app.use("/users", usersRouter)
 
 app.use("/test", (req, res, next)=>{
     console.log("test call")
-    res.json({data: "WAOW!!"})
+    res.json({data: "Reached server successfully"})
 })
 
 app.use(errorHandle)

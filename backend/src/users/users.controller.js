@@ -64,10 +64,10 @@ const validPass = async(req, res, next) => {
 
 // --- ROUTER LEVEL MIDDLEWARE ---
 async function logIn(req, res, next){
-    console.log(req.body)
+    // console.log(req.body)
     const { data: { user_name, password } } = req.body
 
-    // console.log(`username: ${user_name} | password: ${password}`);
+    console.log(`username: ${user_name} | password: ${password}`);
     // console.log(hash)
     if(!user_name || !password){
         next({status: 404, message: "need a username and password"})
@@ -75,11 +75,12 @@ async function logIn(req, res, next){
         const hash = createHmac('sha256', secret)
                 .update(password.trim())
                 .digest('hex');
-        const loggedIn = await service.logIn(user_name, hash);
+        const loggedIn = await service.logIn(user_name.trim(), hash);
+        const { user_id, email } = loggedIn
         if(!loggedIn){
             next({status: 400, message: "username or password incorrect"})
         }else{
-            res.json({data: loggedIn})
+            res.json({data: {user_id, user_name, email}})
         }
     }
 };
@@ -89,10 +90,10 @@ async function register(req, res, next){
     const hash = createHmac('sha256', secret)
         .update(password.trim())
         .digest('hex');
-    console.log(hash);
+    // console.log(hash);
 
-    // await service.register(user_name.trim(), email.trim().toLowerCase(), password.trim())
-    const newUser = await service.logIn(user_name.trim(), password.trim())
+    await service.register(user_name.trim(), email.trim().toLowerCase(), hash)
+    const newUser = await service.logIn(user_name.trim(), hash)
     console.log(newUser)
     res.json({ data: newUser})
 };

@@ -15,9 +15,18 @@ function loadPlaylist (playlist_id) {
         .first()
 };
 
-function createPlaylist(playlist){
+function createPlaylist(playlist_name, user_id){
     return knex("playlists")
-        .insert(playlist)
+        .insert({playlist_name, owner: user_id})
+        .returning("*")
+        .then((created)=> created[0])
+        .then((playlist)=>{
+            const { playlist_id } = playlist
+            return knex("users_playlists")
+            .insert({playlist_id, user_id})
+            // ,join("playlists", "playlists.playlist_id", "users_playlists.playlist_id")
+            .returning("*")
+        })
 };
 
 function playlistExists(playlist_id){
